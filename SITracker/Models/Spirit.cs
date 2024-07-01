@@ -10,9 +10,6 @@ namespace SITracker.Models
     {
         public Spirit()
         {
-            Name = "";
-            Pathname = "";
-            Image = "";
         }
 
         [Key]
@@ -23,14 +20,14 @@ namespace SITracker.Models
         [Required]
         [StringLength(100)]
         
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string Pathname { get; set; }
+        public string? Pathname { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string Image { get; set; }
+        public string? Image { get; set; }
     }
 }

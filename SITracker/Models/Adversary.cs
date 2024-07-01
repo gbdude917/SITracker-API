@@ -10,9 +10,6 @@ namespace SITracker.Models
     {
         public Adversary()
         {
-            Name = "";
-            Pathname = "";
-            Flag = "";
         }
 
         [Key]
@@ -22,15 +19,15 @@ namespace SITracker.Models
 
         [Required]
         [StringLength(100)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string Pathname { get; set; }
+        public string? Pathname { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string Flag { get; set; }
+        public string? Flag { get; set; }
 
     }
 }

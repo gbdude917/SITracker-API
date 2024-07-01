@@ -14,9 +14,6 @@ namespace SITracker.Models
     {
         public User()
         {
-            Email = "";
-            Username = "";
-            Password = "";
         }
 
         [Key]
@@ -25,14 +22,14 @@ namespace SITracker.Models
         public long Id { get; set; }
 
         [Required]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Required]
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
         [Required]
         [JsonIgnore]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         [Required]
         public DateTime RegistrationDate { get; set; }
