@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\16197\\Desktop\\Ultimate Net Course\\SITracker\\SITracker\\SITracker.csproj": {}
+    "C:\\Users\\16197\\Desktop\\sitracker\\SITracker\\SITracker\\SITracker\\SITracker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\16197\\Desktop\\Ultimate Net Course\\SITracker\\SITracker\\SITracker.csproj": {
+    "C:\\Users\\16197\\Desktop\\sitracker\\SITracker\\SITracker\\SITracker\\SITracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\16197\\Desktop\\Ultimate Net Course\\SITracker\\SITracker\\SITracker.csproj",
+        "projectUniqueName": "C:\\Users\\16197\\Desktop\\sitracker\\SITracker\\SITracker\\SITracker\\SITracker.csproj",
         "projectName": "SITracker",
-        "projectPath": "C:\\Users\\16197\\Desktop\\Ultimate Net Course\\SITracker\\SITracker\\SITracker.csproj",
+        "projectPath": "C:\\Users\\16197\\Desktop\\sitracker\\SITracker\\SITracker\\SITracker\\SITracker.csproj",
         "packagesPath": "C:\\Users\\16197\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\16197\\Desktop\\Ultimate Net Course\\SITracker\\SITracker\\obj\\",
+        "outputPath": "C:\\Users\\16197\\Desktop\\sitracker\\SITracker\\SITracker\\SITracker\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\16197\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -34,11 +34,22 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -50,7 +61,15 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
