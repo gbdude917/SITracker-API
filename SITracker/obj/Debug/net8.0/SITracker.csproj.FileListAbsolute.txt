@@ -1,0 +1,7 @@
+C:\Users\16197\Desktop\sitracker\SITracker\SITracker\SITracker\obj\Debug\net8.0\SITracker.csproj.AssemblyReference.cache
+C:\Users\16197\Desktop\sitracker\SITracker\SITracker\SITracker\obj\Debug\net8.0\SITracker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\16197\Desktop\sitracker\SITracker\SITracker\SITracker\obj\Debug\net8.0\SITracker.AssemblyInfoInputs.cache
+C:\Users\16197\Desktop\sitracker\SITracker\SITracker\SITracker\obj\Debug\net8.0\SITracker.AssemblyInfo.cs
+C:\Users\16197\Desktop\sitracker\SITracker\SITracker\SITracker\obj\Debug\net8.0\SITracker.csproj.CoreCompileInputs.cache
+C:\Users\16197\Desktop\sitracker\SITracker\SITracker\SITracker\obj\Debug\net8.0\SITracker.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\16197\Desktop\sitracker\SITracker\SITracker\SITracker\obj\Debug\net8.0\SITracker.sourcelink.json

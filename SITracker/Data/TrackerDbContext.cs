@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SITracker.Models;
 
 namespace SITracker.Data
 {
     public class TrackerDbContext : DbContext
     {
-        public TrackerDbContext(DbContextOptions<ApplicationDbContext> context) : base(options)
+        public TrackerDbContext(DbContextOptions<TrackerDbContext> options) : base(options)
         {
         }
 

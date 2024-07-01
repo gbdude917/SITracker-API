@@ -1,15 +1,22 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+
+
 
 namespace SITracker.Models
 {
+    [Index(nameof(Email), nameof(Username), IsUnique = true)]
     public class User
     {
         public User()
         {
+            Email = "";
+            Username = "";
+            Password = "";
         }
 
         [Key]
@@ -18,11 +25,9 @@ namespace SITracker.Models
         public long Id { get; set; }
 
         [Required]
-        [Column(unique: true, nullable: false)]
         public string Email { get; set; }
 
         [Required]
-        [Column(unique: true, nullable: false)]
         public string Username { get; set; }
 
         [Required]
@@ -32,8 +37,8 @@ namespace SITracker.Models
         [Required]
         public DateTime RegistrationDate { get; set; }
 
-        [JsonIgnore]
-        public ICollection<Authority> Authorities { get; set; }
+        // [JsonIgnore]
+        // public ICollection<Authority> Authorities { get; set; }
 
         
     }

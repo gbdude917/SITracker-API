@@ -1,13 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SITracker.Models
 {
     [Table("spirits")]
+    [Index(nameof(Name), nameof(Pathname), IsUnique = true)]
     public class Spirit
     {
         public Spirit()
         {
+            Name = "";
+            Pathname = "";
+            Image = "";
         }
 
         [Key]
@@ -17,12 +22,11 @@ namespace SITracker.Models
 
         [Required]
         [StringLength(100)]
-        [Index(IsUnique = true)]
+        
         public string Name { get; set; }
 
         [Required]
         [StringLength(100)]
-        [Index(IsUnique = true)]
         public string Pathname { get; set; }
 
         [Required]

@@ -1,13 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SITracker.Models
 {
     [Table("adversaries")]
+    [Index(nameof(Name), nameof(Pathname), IsUnique = true)]
     public class Adversary
     {
         public Adversary()
         {
+            Name = "";
+            Pathname = "";
+            Flag = "";
         }
 
         [Key]
@@ -17,12 +22,10 @@ namespace SITracker.Models
 
         [Required]
         [StringLength(100)]
-        [indexer(IsUnique = true)]
         public string Name { get; set; }
 
         [Required]
         [StringLength(100)]
-        [Index(IsUnique = true)]
         public string Pathname { get; set; }
 
         [Required]
