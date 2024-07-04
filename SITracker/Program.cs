@@ -8,10 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IAdversaryService, AdversaryService>();
+builder.Services.AddScoped<ISpiritService, SpiritService>();
 
 // Database Connection
 builder.Services.AddDbContext<TrackerDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnections")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
 

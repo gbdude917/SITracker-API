@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SITracker.Models;
 using SITracker.Interfaces;
 
@@ -8,11 +6,11 @@ namespace SITracker.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class AdversaryController : ControllerBase
+    public class AdversariesController : ControllerBase
     {
         private readonly IAdversaryService _adversaryService;
 
-        public AdversaryController(IAdversaryService adversaryService)
+        public AdversariesController(IAdversaryService adversaryService)
         {
             _adversaryService = adversaryService;
         }

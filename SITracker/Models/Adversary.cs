@@ -19,14 +19,17 @@ namespace SITracker.Models
 
         [Required]
         [StringLength(100)]
+        [Column("name")]
         public string? Name { get; set; }
 
         [Required]
         [StringLength(100)]
+        [Column("pathname")]
         public string? Pathname { get; set; }
 
         [Required]
         [StringLength(100)]
+        [Column("flag")]
         public string? Flag { get; set; }
 
     }
