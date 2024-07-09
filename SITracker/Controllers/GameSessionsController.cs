@@ -41,7 +41,7 @@ namespace SITracker.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<GameSession>> CreateGameSession([FromBody] CreateGameSessionDto createGameSessionDto)
+        public async Task<ActionResult<GameSession>> CreateGameSession([FromBody] GameSessionDto createGameSessionDto)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace SITracker.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<GameSession>> UpdateGameSession(long id, [FromBody] GameSession newGameSession)
+        public async Task<ActionResult<GameSession>> UpdateGameSession(long id, [FromBody] GameSessionDto newGameSession)
         {
             try
             {

@@ -42,14 +42,14 @@ namespace SITracker.Services
             return gameSession;
         }
 
-        public async Task<ActionResult<GameSession>> CreateGameSession(CreateGameSessionDto createGameSessionDto)
+        public async Task<ActionResult<GameSession>> CreateGameSession(GameSessionDto gameSessionDto)
         {
-            if (createGameSessionDto.PlayedOn == null) createGameSessionDto.PlayedOn = DateTime.UtcNow;
+            if (gameSessionDto.PlayedOn == null) gameSessionDto.PlayedOn = DateTime.UtcNow;
             
             // Retrieve the User, Spirit, and Adversary objects
-            var user = await _context.Users.FindAsync(createGameSessionDto.UserId);
-            var spirit = await _context.Spirits.FindAsync(createGameSessionDto.SpiritId);
-            var adversary = await _context.Adversaries.FindAsync(createGameSessionDto.AdversaryId);
+            var user = await _context.Users.FindAsync(gameSessionDto.UserId);
+            var spirit = await _context.Spirits.FindAsync(gameSessionDto.SpiritId);
+            var adversary = await _context.Adversaries.FindAsync(gameSessionDto.AdversaryId);
 
             if (user == null) throw new ArgumentException("Invalid user.");
             if (spirit == null) throw new ArgumentException("Invalid spirit.");
@@ -57,18 +57,18 @@ namespace SITracker.Services
 
             var newGameSession = new GameSession
             {
-                UserId = createGameSessionDto.UserId,
+                UserId = gameSessionDto.UserId,
                 User = user,
-                SpiritId = createGameSessionDto.SpiritId,
+                SpiritId = gameSessionDto.SpiritId,
                 Spirit = spirit,
-                AdversaryId = createGameSessionDto.AdversaryId,
+                AdversaryId = gameSessionDto.AdversaryId,
                 Adversary = adversary,
-                Board = createGameSessionDto.Board,
-                SessionName = createGameSessionDto.SessionName,
-                Description = createGameSessionDto.Description,
-                PlayedOn = createGameSessionDto.PlayedOn,
-                Result = createGameSessionDto.Result,
-                IsCompleted = createGameSessionDto.IsCompleted
+                Board = gameSessionDto.Board,
+                SessionName = gameSessionDto.SessionName,
+                Description = gameSessionDto.Description,
+                PlayedOn = gameSessionDto.PlayedOn,
+                Result = gameSessionDto.Result,
+                IsCompleted = gameSessionDto.IsCompleted
             };
 
             _context.GameSessions.Add(newGameSession);
@@ -77,15 +77,24 @@ namespace SITracker.Services
             return new CreatedAtActionResult("CreateGameSession", "GameSessions", new { id =  newGameSession.Id }, newGameSession);
         }
 
-        public async Task<ActionResult<GameSession>> UpdateGameSession(long id, GameSession newGameSession)
+        public async Task<ActionResult<GameSession>> UpdateGameSession(long id, GameSessionDto newGameSession)
         {
             var oldGameSession = await _context.GameSessions.FindAsync(id);
 
             if (oldGameSession == null) return new NotFoundResult();
 
-            oldGameSession.User = newGameSession.User;
-            oldGameSession.Spirit = newGameSession.Spirit;
-            oldGameSession.Adversary = newGameSession.Adversary;
+            // Get the user, spirit, and adversary by id
+            var user = await _context.Users.FindAsync(newGameSession.UserId);
+            var spirit = await _context.Spirits.FindAsync(newGameSession.SpiritId);
+            var adversary = await _context.Adversaries.FindAsync(newGameSession.AdversaryId);
+
+            if (user == null) throw new ArgumentException("Invalid user.");
+            if (spirit == null) throw new ArgumentException("Invalid spirit.");
+            if (adversary == null) throw new ArgumentException("Invalid adversary.");
+
+            oldGameSession.User = user;
+            oldGameSession.Spirit = spirit;
+            oldGameSession.Adversary = adversary;
             oldGameSession.Board = newGameSession.Board;
             oldGameSession.SessionName = newGameSession.SessionName;
             oldGameSession.Description = newGameSession.Description;

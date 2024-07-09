@@ -11,9 +11,9 @@ namespace SITracker.Interfaces
 
         Task<ActionResult<GameSession>> GetGameSessionById(long id);
 
-        Task<ActionResult<GameSession>> CreateGameSession(CreateGameSessionDto gameSession);
+        Task<ActionResult<GameSession>> CreateGameSession(GameSessionDto gameSession);
 
-        Task<ActionResult<GameSession>> UpdateGameSession(long id,  GameSession newGameSession);
+        Task<ActionResult<GameSession>> UpdateGameSession(long id, GameSessionDto newGameSession);
 
         Task<ActionResult> DeleteGameSession(long id);
     }

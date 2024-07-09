@@ -1,9 +1,8 @@
 ﻿using Newtonsoft.Json;
-using System;
 
 namespace SITracker.DTOs
 {
-    public class CreateGameSessionDto
+    public class GameSessionDto
     {
         [JsonProperty("user_id")]
         public long UserId { get; set; }
