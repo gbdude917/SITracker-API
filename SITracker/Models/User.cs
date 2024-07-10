@@ -26,7 +26,6 @@ namespace SITracker.Models
 
         [Required]
         [Column("username")]
-
         public string? Username { get; set; }
 
         [Required]

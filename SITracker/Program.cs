@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IAdversaryService, AdversaryService>();
 builder.Services.AddScoped<ISpiritService, SpiritService>();
 builder.Services.AddScoped<IGameSessionService, GameSessionService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 // Database Connection
 builder.Services.AddDbContext<TrackerDbContext>(options =>
