@@ -13,6 +13,9 @@ using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Retrieve secrets
+builder.Configuration.AddUserSecrets<Program>();
+
 // Add services to the container.
 builder.Services.AddScoped<IAdversaryService, AdversaryService>();
 builder.Services.AddScoped<ISpiritService, SpiritService>();
