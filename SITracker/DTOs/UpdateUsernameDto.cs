@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace SITracker.DTOs
+namespace SITracker.Dtos
 {
     public class UpdateUsernameDto
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SITracker.Models;
-using SITracker.DTOs;
+using SITracker.Dtos;
 
 
 namespace SITracker.Interfaces

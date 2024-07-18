@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using SITracker.Data;
-using SITracker.DTOs;
+using SITracker.Dtos;
 using SITracker.Interfaces;
 using SITracker.Models;
 using System.Security.Claims;

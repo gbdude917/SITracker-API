@@ -1,4 +1,4 @@
-﻿namespace SITracker.DTOs
+﻿namespace SITracker.Dtos
 {
     public class LoginDto
     {

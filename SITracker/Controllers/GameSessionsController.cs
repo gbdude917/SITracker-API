@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SITracker.DTOs;
+using SITracker.Dtos;
 using SITracker.Interfaces;
 using SITracker.Models;
 using System.Security.Claims;
@@ -10,11 +10,11 @@ namespace SITracker.Controllers
     [Route("api/v1/game-sessions")]
     public class GameSessionsController : ControllerBase
     {
-        private readonly IGameSessionService _service;
+        private readonly IGameSessionService _gameSessionService;
 
         public GameSessionsController(IGameSessionService service)
         {
-            _service = service;
+            _gameSessionService = service;
         }
 
         [HttpGet("my-game-sessions")]
@@ -29,7 +29,7 @@ namespace SITracker.Controllers
                 return Unauthorized();
             }
 
-            var gameSessions = await _service.GetGameSessionsByUserId(long.Parse(userId));
+            var gameSessions = await _gameSessionService.GetGameSessionsByUserId(long.Parse(userId));
 
             return Ok(gameSessions);
         }
@@ -37,7 +37,7 @@ namespace SITracker.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<GameSession>> GetGameSessionById(long id)
         {
-            return await _service.GetGameSessionById(id);
+            return await _gameSessionService.GetGameSessionById(id);
         }
 
         [HttpPost]
@@ -45,7 +45,7 @@ namespace SITracker.Controllers
         {
             try
             {
-                var createdGameSessionResult = await _service.CreateGameSession(createGameSessionDto);
+                var createdGameSessionResult = await _gameSessionService.CreateGameSession(createGameSessionDto);
 
                 if (createdGameSessionResult.Result is ObjectResult objectResult && objectResult.Value is GameSession createdGameSession)
                 {
@@ -67,7 +67,7 @@ namespace SITracker.Controllers
         {
             try
             {
-                var updatedGameSession = await _service.UpdateGameSession(id, newGameSession);
+                var updatedGameSession = await _gameSessionService.UpdateGameSession(id, newGameSession);
 
                 if (updatedGameSession == null) return NotFound("Game Session not found!");
 
@@ -84,7 +84,7 @@ namespace SITracker.Controllers
         {
             try
             {
-                var result = await _service.DeleteGameSession(id);
+                var result = await _gameSessionService.DeleteGameSession(id);
 
                 if (result == null) return NotFound("Game session not found!");
 

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SITracker.Data;
-using SITracker.DTOs;
+using SITracker.Dtos;
 using SITracker.Exceptions;
 using SITracker.Interfaces;
 using SITracker.Models;

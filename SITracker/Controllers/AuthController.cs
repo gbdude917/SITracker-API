@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SITracker.DTOs;
+using SITracker.Dtos;
 using SITracker.Interfaces;
 
 namespace SITracker.Controllers
@@ -8,11 +8,11 @@ namespace SITracker.Controllers
     [Route("api/v1/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly IUserAuthService _service;
+        private readonly IUserAuthService _authService;
 
         public AuthController(IUserAuthService service)
         {
-            _service = service;
+            _authService = service;
         }
 
         [HttpPost("register")]
@@ -20,7 +20,7 @@ namespace SITracker.Controllers
         {
             try
             {
-                await _service.RegisterUserAsync(registerDto);
+                await _authService.RegisterUserAsync(registerDto);
                 return Ok("User registered successfully!");
             }
             catch (Exception e)
@@ -34,7 +34,7 @@ namespace SITracker.Controllers
         {
             try
             {
-                var response = await _service.AuthenticateUserAsync(loginDto);
+                var response = await _authService.AuthenticateUserAsync(loginDto);
                 return Ok(response);
             }
             catch (Exception e)

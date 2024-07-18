@@ -1,4 +1,4 @@
-﻿using SITracker.DTOs;
+﻿using SITracker.Dtos;
 using SITracker.Models;
 
 namespace SITracker.Interfaces
