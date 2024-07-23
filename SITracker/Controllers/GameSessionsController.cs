@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SITracker.Dtos;
 using SITracker.Interfaces;
 using SITracker.Models;
@@ -11,27 +12,28 @@ namespace SITracker.Controllers
     public class GameSessionsController : ControllerBase
     {
         private readonly IGameSessionService _gameSessionService;
+        private readonly IConfiguration _configuration;
 
-        public GameSessionsController(IGameSessionService service)
+        public GameSessionsController(IGameSessionService service, IConfiguration configuration)
         {
             _gameSessionService = service;
+            _configuration = configuration;
         }
 
+        [Authorize]
         [HttpGet("my-game-sessions")]
         public async Task<ActionResult<List<GameSession>>> GetMyGameSessions()
         {
-            // TODO: Still need to test this with JWT/cookies
-            // Get the user ID from the JWT token
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
+
             if (userId == null)
             {
                 return Unauthorized();
             }
 
             var gameSessions = await _gameSessionService.GetGameSessionsByUserId(long.Parse(userId));
-
             return Ok(gameSessions);
+
         }
 
         [HttpGet("{id}")]

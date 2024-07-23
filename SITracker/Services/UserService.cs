@@ -6,6 +6,7 @@ using SITracker.Dtos;
 using SITracker.Exceptions;
 using SITracker.Interfaces;
 using SITracker.Models;
+using System.Diagnostics;
 
 namespace SITracker.Services
 {
@@ -78,8 +79,10 @@ namespace SITracker.Services
                 throw new PasswordsDoNotMatchException("Passwords do not match!");
             }
 
-            // TODO: Encode the new password and update accordingly
+            // Encode the new password and update accordingly
             user.Password = _passwordHasher.HashPassword(user, updatePasswordDto.NewPassword);
+
+            Debug.WriteLine($"RegistrationDate Kind: {user.RegistrationDate.Kind}"); // Should be Utc
 
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
@@ -160,7 +163,7 @@ namespace SITracker.Services
             {
                 Token = token,
                 Username = user.Username,
-                Expiration = DateTime.UtcNow.AddMinutes(30)
+                Expiration = DateTime.UtcNow.AddHours(1)
             };
         }
     }

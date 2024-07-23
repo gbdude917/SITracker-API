@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,6 +11,7 @@ namespace SITracker.Models
     {
         public User()
         {
+            GameSessions = new List<GameSession>();
         }
 
         [Key]
@@ -37,9 +36,12 @@ namespace SITracker.Models
         [Column("registration_date")]
         public DateTime RegistrationDate { get; set; }
 
+        [JsonIgnore]
+        public ICollection<GameSession> GameSessions { get; set; }
+
         // [JsonIgnore]
         // public ICollection<Authority> Authorities { get; set; }
 
-        
+
     }
 }

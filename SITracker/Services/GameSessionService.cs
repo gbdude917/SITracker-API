@@ -1,15 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using SITracker.Data;
 using SITracker.Dtos;
 using SITracker.Interfaces;
 using SITracker.Models;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Http.HttpResults;
-using System.Net;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.Eventing.Reader;
-
 
 namespace SITracker.Services
 {
@@ -24,7 +18,11 @@ namespace SITracker.Services
 
         public async Task<ActionResult<List<GameSession>>> GetGameSessionsByUserId(long id)
         {
-            var gameSessions = await _context.GameSessions.Where(gs => gs.UserId == id).ToListAsync();
+            var gameSessions = await _context.GameSessions.Where(gs => gs.UserId == id)
+                .Include(gs => gs.User)
+                .Include(gs => gs.Spirit)
+                .Include(gs => gs.Adversary)
+                .ToListAsync();
 
             return gameSessions;
         }

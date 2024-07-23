@@ -18,11 +18,25 @@ namespace SITracker.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<GameSession>()
+                .HasOne(gs => gs.User)
+                .WithMany(u => u.GameSessions)
+                .HasForeignKey(gs => gs.UserId)
+                .OnDelete(DeleteBehavior.Cascade); // This will enable cascade delete
+
             modelBuilder.Entity<GameSession>()
                 .Property(e => e.PlayedOn)
                 .HasConversion(new ValueConverter<DateTime, DateTime>(
                     v => v.ToUniversalTime(),    // Convert DateTime to UTC before saving
                     v => DateTime.SpecifyKind(v, DateTimeKind.Utc)));  // Ensure DateTime kind is UTC when reading from database
+
+            modelBuilder.Entity<User>()
+            .Property(e => e.RegistrationDate)
+            .HasConversion(new ValueConverter<DateTime, DateTime>(
+                v => v.ToUniversalTime(),
+                v => DateTime.SpecifyKind(v, DateTimeKind.Utc)));
         }
     }
 }
