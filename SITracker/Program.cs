@@ -12,6 +12,9 @@ using SITracker.Services;
 using System.Text;
 using System.Text.Json;
 using SITracker.Helpers;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Runtime.ConstrainedExecution;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -95,10 +98,45 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
                 Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
                 return Task.CompletedTask;
             },
-            OnTokenValidated = context =>
+            OnTokenValidated = async context =>
             {
-                Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
-                return Task.CompletedTask;
+                var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+                var userId = context.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
+                var lastPasswordChangeClaim = context.Principal.FindFirst("LastPasswordChange")?.Value;
+
+                if (userId != null && lastPasswordChangeClaim != null)
+                {
+                    var userActionResult = await userService.GetUserById(long.Parse(userId));
+                    var user = userActionResult.Value;
+                    
+                    if (user == null)
+                    {
+                        context.Fail("User not found.");
+                        return;
+                    }
+
+                    // Parse the LastPasswordChange claim to DateTime
+                    if (DateTime.TryParse(lastPasswordChangeClaim, null, System.Globalization.DateTimeStyles.RoundtripKind, out var lastPasswordChangeDateClaim))
+                    {
+                        var lastPasswordChangeDateValue = user.LastPasswordChange;
+                        
+                        if (lastPasswordChangeDateValue != null)
+                        {
+                            // Parse LastPasswordChangeDateValue from user found in db table
+                            var lastPasswordChangeDateValueUtc = DateTime.SpecifyKind(lastPasswordChangeDateValue.Value, DateTimeKind.Utc);
+
+                            // Compare jwt claim and db values
+                            if (lastPasswordChangeDateClaim != lastPasswordChangeDateValueUtc)
+                            {
+                                context.Fail("Token is no longer valid");
+                                return;
+                            }
+                        }
+
+                    }
+                }
+
+                Console.WriteLine("Token validated successfully.");
             }
         };
     });

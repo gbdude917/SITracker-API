@@ -32,7 +32,8 @@ namespace SITracker.Services
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Username),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("LastPasswordChange", user.LastPasswordChange?.ToString("o") ?? string.Empty) 
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();

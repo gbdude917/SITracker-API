@@ -39,9 +39,8 @@ namespace SITracker.Models
         [JsonIgnore]
         public ICollection<GameSession> GameSessions { get; set; }
 
-        // [JsonIgnore]
-        // public ICollection<Authority> Authorities { get; set; }
-
-
+        //[JsonIgnore]
+        [Column("last_password_change")]
+        public DateTime? LastPasswordChange { get; set; }
     }
 }

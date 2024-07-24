@@ -81,8 +81,7 @@ namespace SITracker.Services
 
             // Encode the new password and update accordingly
             user.Password = _passwordHasher.HashPassword(user, updatePasswordDto.NewPassword);
-
-            Debug.WriteLine($"RegistrationDate Kind: {user.RegistrationDate.Kind}"); // Should be Utc
+            user.LastPasswordChange = DateTime.UtcNow; // Update the LastPasswordChange timestamp
 
             _context.Users.Update(user);
             await _context.SaveChangesAsync();

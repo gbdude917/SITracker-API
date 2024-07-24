@@ -5,7 +5,7 @@ namespace SITracker.Dtos
     public class UpdateUsernameDto
     {
 
-        [JsonProperty("new_user_name")]
+        [JsonProperty("new_username")]
         public string? NewUsername { get; set; }
     }
 }

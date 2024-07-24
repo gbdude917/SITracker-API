@@ -5,8 +5,6 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SITracker", "SITracker\SITracker.csproj", "{A65982A0-E934-45AE-849E-092A0E4D073A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SITracker.Tests", "SITracker.Tests\SITracker.Tests.csproj", "{3ACC8930-00DB-4168-8A49-B133C969F2DA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{A65982A0-E934-45AE-849E-092A0E4D073A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A65982A0-E934-45AE-849E-092A0E4D073A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A65982A0-E934-45AE-849E-092A0E4D073A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3ACC8930-00DB-4168-8A49-B133C969F2DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3ACC8930-00DB-4168-8A49-B133C969F2DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3ACC8930-00DB-4168-8A49-B133C969F2DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3ACC8930-00DB-4168-8A49-B133C969F2DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
