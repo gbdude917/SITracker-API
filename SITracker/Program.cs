@@ -1,20 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
-using Npgsql.EntityFrameworkCore.PostgreSQL;
 using SITracker.Data;
 using SITracker.Interfaces;
 using SITracker.Models;
 using SITracker.Services;
 using System.Text;
-using System.Text.Json;
-using SITracker.Helpers;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Runtime.ConstrainedExecution;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,9 +47,6 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
             options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         });
-
-    // Configure strongly typed settings object
-    services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
 
     // Swagger
     services.AddEndpointsApiExplorer();
@@ -140,8 +131,6 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
             }
         };
     });
-
-    //services.AddAuthorization();
 }
 
 void Configure(WebApplication app, IWebHostEnvironment env)
@@ -165,10 +154,6 @@ void Configure(WebApplication app, IWebHostEnvironment env)
 
     app.UseAuthentication();
     app.UseAuthorization();
-
-
-    // Add custom jwt middleware
-    //app.UseMiddleware<JwtMiddleware>();
 
     app.MapControllers();
 }
