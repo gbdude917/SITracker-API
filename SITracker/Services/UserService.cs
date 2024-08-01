@@ -48,6 +48,14 @@ namespace SITracker.Services
                 return new BadRequestObjectResult("New username cannot be null or empty.");
             }
 
+            // Check that the new username is unique
+            var existingUser = await _context.Users.SingleOrDefaultAsync(u => u.Username == updateUsernameDto.NewUsername);
+
+            if (existingUser != null)
+            {
+                return new ConflictObjectResult("Username already exists.");
+            }
+
             user.Username = updateUsernameDto.NewUsername;
 
             _context.Users.Update(user);

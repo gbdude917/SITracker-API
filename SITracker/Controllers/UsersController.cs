@@ -35,11 +35,18 @@ namespace SITracker.Controllers
         public async Task<ActionResult<User>> UpdateUsername(long id, [FromBody] UpdateUsernameDto updateUsernameDto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var oldUsername = User.FindFirstValue(ClaimTypes.Name);
 
             // Ensure user cannot update other user's credentials
             if (userId == null || long.Parse(userId) != id)
             {
                 return Unauthorized();
+            }
+
+            // Ensure that user cannot update their username to their old username
+            if (oldUsername == updateUsernameDto.NewUsername)
+            {
+                return new BadRequestObjectResult("The new username cannot be the same as the old username.");
             }
 
             return await _userService.UpdateUsername(id, updateUsernameDto);
