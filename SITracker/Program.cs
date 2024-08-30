@@ -41,6 +41,18 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
     services.AddDbContext<TrackerDbContext>(options =>
         options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
+    // Configure CORS
+    services.AddCors(options =>
+    {
+        options.AddPolicy("AllowAll",
+            policy =>
+            {
+                policy.AllowAnyOrigin()
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+            });
+    });
+
     services.AddControllers()
         .AddNewtonsoftJson(options =>
         {
@@ -148,9 +160,12 @@ void Configure(WebApplication app, IWebHostEnvironment env)
         c.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
     });
 
-    app.UseHttpsRedirection();
+    // app.UseHttpsRedirection();
 
     app.UseRouting();
+
+    // Use CORS middleware
+    app.UseCors("AllowAll");
 
     app.UseAuthentication();
     app.UseAuthorization();

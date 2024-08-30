@@ -21,7 +21,7 @@ namespace SITracker.Controllers
             try
             {
                 await _authService.RegisterUserAsync(registerDto);
-                return Ok("User registered successfully!");
+                return Ok(new { message = "User registered successfully!" });
             }
             catch (Exception e)
             {
