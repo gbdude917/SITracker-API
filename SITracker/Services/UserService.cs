@@ -112,9 +112,14 @@ namespace SITracker.Services
         public async Task<User> RegisterUserAsync(RegisterDto registerDto)
         {
             // Check if username or emails exists in DB
-            if (await _context.Users.AnyAsync(u => u.Username == registerDto.Username || u.Email == registerDto.Email))
+            if (await _context.Users.AnyAsync(u => u.Username == registerDto.Username))
             {
-                throw new Exception("Username or email already exists");
+                throw new Exception("Username already exists.");
+            }
+
+            if (await _context.Users.AnyAsync(u => u.Email == registerDto.Email))
+            {
+                throw new Exception("Email already exists.");
             }
 
             if (registerDto.Username == null || registerDto.Email == null || registerDto.Password == null)
