@@ -18,6 +18,7 @@ namespace SITracker.Controllers
             _userService = service;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<User>>> GetAllUsers()
         {
