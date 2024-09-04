@@ -19,7 +19,7 @@ namespace SITracker.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<User>>> GetAllUser()
+        public async Task<ActionResult<List<User>>> GetAllUsers()
         {
             return await _userService.GetAllUsers();
         }
