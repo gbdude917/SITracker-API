@@ -24,10 +24,23 @@ namespace SITracker.Controllers
             return await _userService.GetAllUsers();
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUserById(long id)
         {
-            return await _userService.GetUserById(id);
+            // Get the user id from the jwt and check that it matches the id to be retrieved
+            var userIdFromJwt = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userIdFromJwt == null || long.Parse(userIdFromJwt) != id)
+            {
+                return Unauthorized();
+            }
+
+            var user = await _userService.GetUserById(id);
+
+            if (user == null) { return NotFound(); }
+
+            return Ok(user);
         }
 
         [Authorize]

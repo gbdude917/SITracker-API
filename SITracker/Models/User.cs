@@ -20,6 +20,7 @@ namespace SITracker.Models
         public long Id { get; set; }
 
         [Required]
+        [JsonIgnore]
         [Column("email")]
         public string? Email { get; set; }
 
