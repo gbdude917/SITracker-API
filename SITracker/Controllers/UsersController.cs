@@ -63,7 +63,9 @@ namespace SITracker.Controllers
                 return new BadRequestObjectResult("The new username cannot be the same as the old username.");
             }
 
-            return await _userService.UpdateUsername(id, updateUsernameDto);
+            var updatedUser =  await _userService.UpdateUsername(id, updateUsernameDto);
+
+            return Ok(updatedUser);
         }
 
         [Authorize]

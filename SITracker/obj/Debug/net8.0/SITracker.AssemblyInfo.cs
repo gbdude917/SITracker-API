@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SITracker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1609b98c95a57b2011475968dcf842906d01f717")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52e5e6645fd38781968c3e0a2166341e2c39591f")]
 [assembly: System.Reflection.AssemblyProductAttribute("SITracker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SITracker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
