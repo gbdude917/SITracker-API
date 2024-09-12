@@ -60,12 +60,12 @@ namespace SITracker.Controllers
             // Ensure that user cannot update their username to their old username
             if (oldUsername == updateUsernameDto.NewUsername)
             {
-                return new BadRequestObjectResult("The new username cannot be the same as the old username.");
+                return BadRequest("The new username cannot be the same as the old username.");
             }
 
             var updatedUser =  await _userService.UpdateUsername(id, updateUsernameDto);
 
-            return Ok(updatedUser);
+            return updatedUser;
         }
 
         [Authorize]
